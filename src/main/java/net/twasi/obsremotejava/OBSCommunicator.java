@@ -77,6 +77,8 @@ import net.twasi.obsremotejava.requests.StopReplayBuffer.StopReplayBufferRequest
 import net.twasi.obsremotejava.requests.StopReplayBuffer.StopReplayBufferResponse;
 import net.twasi.obsremotejava.requests.StopStreaming.StopStreamingRequest;
 import net.twasi.obsremotejava.requests.StopStreaming.StopStreamingResponse;
+import net.twasi.obsremotejava.requests.TakeSourceScreenshot.TakeSourceScreenshotRequest;
+import net.twasi.obsremotejava.requests.TakeSourceScreenshot.TakeSourceScreenshotResponse;
 import net.twasi.obsremotejava.requests.TransitionToProgram.TransitionToProgramRequest;
 import net.twasi.obsremotejava.requests.TransitionToProgram.TransitionToProgramResponse;
 import org.eclipse.jetty.websocket.api.Session;
@@ -478,6 +480,12 @@ public class OBSCommunicator {
         SetSourceSettingsRequest request = new SetSourceSettingsRequest(this, sourceName, settings);
         session.getRemote().sendStringByFuture(new Gson().toJson(request));
         callbacks.put(SetSourceSettingsResponse.class, callback);
+    }
+
+    public void takeSourceScreenshot(String sourceName, String imgFormat, Callback callback) {
+        TakeSourceScreenshotRequest request = new TakeSourceScreenshotRequest(this, sourceName, imgFormat);
+        session.getRemote().sendStringByFuture(new Gson().toJson(request));
+        callbacks.put(TakeSourceScreenshotResponse.class, callback);
     }
 
     public void startRecording(Callback callback) {

@@ -231,6 +231,10 @@ public class OBSRemoteController {
         communicator.setSourceSettings(sourceName, settings, callback);
     }
 
+    public void takeSourceScreenshot(String sourceName, String imgFormat, Callback callback) {
+        communicator.takeSourceScreenshot(sourceName, imgFormat, callback);
+    }
+
     public void getStreamingStatus(Callback callback) {
         communicator.getStreamingStatus(callback);
     }
